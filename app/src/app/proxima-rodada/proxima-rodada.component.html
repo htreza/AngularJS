@@ -1,0 +1,22 @@
+<p>
+  <button type="button" class="btn btn-primary" (click)="listar()">Partidas</button>
+</p>
+
+<table  class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th colspan="2">Casa</th>
+      <th colspan="2">Visitante</th>
+    </tr>
+  </thead>
+
+  <tbody *ngIf="partidaCarregada">
+    <tr *ngFor="let partida of partidas; let i = index">
+      <td><img [src]="clubesCasa[i].escudos[0]"></td>
+      <td>{{ clubesCasa[i].abreviacao }}</td>
+      <td>{{ clubesVisita[i].abreviacao }}</td>
+      <td><img [src]="clubesVisita[i].escudos[0]"></td>
+    </tr>
+  </tbody>
+
+</table>

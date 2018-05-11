@@ -1,0 +1,57 @@
+
+
+<strong>{{ erro }}</strong>
+
+<button type="button" class="btn btn-primary" (click)="listarClubes()">Clubes</button>
+<strong> {{ tempoRestante }} </strong>
+
+<div class="clubes.component" ng-app="AppClubes" ng-component="ClubesComponent">
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon">
+        <i class="fa fa-search"></i>
+      </div>
+      <input type="text" class="form-control" placeholder="Filtrar"  (input)="filtro = $event.target.value" >
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <td>
+          <a href="#" >
+            Nome
+            <span  class="fa fa-caret-down"></span>
+            <span  class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a href="#" (click)="setOrdenador('posicao')">
+            Posicao
+            <span class="fa fa-caret-down"></span>
+            <span class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a href="#">
+            Abreviacao
+            <span  class="fa fa-caret-down"></span>
+            <span class="fa fa-caret-up"></span>
+          </a>
+        </td>
+
+        <td>
+          Escudo
+        </td>
+      </tr>
+    </thead>
+    <tbody *ngIf="clubCarregado">
+      <tr *ngFor="let club of clubes | filtrarClubes:filtro | ordenarClubes:ordenador">
+        <td>{{ club.nome }}</td>
+        <td>{{ club.posicao }}</td>
+        <td>{{ club.abreviacao }}</td>
+        <td><img [src]="club.escudos[0]"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
