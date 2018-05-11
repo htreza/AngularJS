@@ -1,0 +1,319 @@
+
+<html lang="en">
+<head>
+ <!-- Powered by Henrique Treza -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/localization/messages_pt_BR.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>Tela Cadastro Bandtec</title>
+	
+	
+</head>
+<body>
+    <style>
+            #tabela {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+            
+            #tabela td, #tabela th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            
+            #tabela tr:nth-child(even){background-color: #f2f2f2;}
+            
+            #tabela tr:hover {background-color: #ddd;}
+            
+            #tabela th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #A4A4A4;
+                color: #013ADF;
+            }
+
+            #btnIncluir {
+                float: right;
+                padding-right: 20px;
+                padding-bottom: 5px;
+            }
+           input.error {
+                border-color: #FF0000;
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+            }
+            input.error:focus {
+                border-color: #FF0000;
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+            }
+            
+    </style>
+    <div>
+        <h1><center>Tela Cadastro Bandtec</center></h1>
+    </div>
+    <div id="btnIncluir">
+        <!-- Button Modal Incluir -->
+        <button type="button" class="btn btn-Info" data-toggle="modal" data-target="#modalIncluir">
+            Incluir
+        </button>
+    </div>
+    <table id="tabela" class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+                <th>E-mail</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody id="registro">
+        </tbody>
+    </table>
+
+
+
+      
+    <!-- Modal Incluir -->
+    <div class="modal fade" id="modalIncluir" tabindex="-1" role="dialog" aria-labelledby="ModalIncluir">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="ModalIncluir">Incluir</h4>
+                </div>
+                <form id="formIncluir">
+                    <div class="modal-body">            
+                        <div>
+                            <label for="incluirNome">Nome:</label>
+                            <input type="text" class="form-control" name="nome" id="incluirNome">
+                        </div>
+                        <div>
+                            <label for="incluirDataNasc">Data de Nascimento:</label>
+                            <input type="text" class="form-control data" name="dataIncluir" autocomplete="off" id="incluirDataNasc">
+                        </div>
+                        <div>
+                            <label for="incluirEmail">E-mail:</label>
+                            <input type="text" class="form-control" name="email" id="incluirEmail">
+                        </div>            
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Salvar"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        
+    <!-- Modal Editar -->
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="ModalEditar">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ModalEditar">Editar</h4>
+            </div>
+            <form id="formEditar">
+                <div class="modal-body">
+                    
+                    <div>
+                        <label for="editarNome">Nome:</label><br>
+                        <input type="text" class="form-control" name="nome" id="editarNome">
+                    </div>
+                    <div>
+                        <label for="editarDataNasc">Data de Nascimento:</label><br>
+                        <input type="text" class="form-control data" name="dataEditar" autocomplete="off" id="editarDataNasc">                        
+                    </div>
+                    <div>
+                        <label for="editarEmail">E-mail:</label><br>
+                        <input type="text" class="form-control" name="email" id="editarEmail">
+                    </div>            
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="Salvar"/>    
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+       
+    <!-- Modal Excluir -->
+    <div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="ModalExcluir">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="ModalExcluir">Excluir</h4>
+        </div>
+        <div class="modal-body">
+            <div>
+                Deseja mesmo excluir este registro?
+            </div>            
+        </div>
+        <div class="modal-footer">            
+            <button type="button" class="btn btn-danger" id="excluir">Sim</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">   
+    
+    $(document).ready(function(){
+
+        $('.data').mask('00/00/0000');
+
+        jQuery.validator.addMethod("dateBR", function (value, element) {
+            //Contando chars
+            if (value.length != 10) return false;
+            // Verificando as data
+            var data = value;
+            var dia = data.substr(0, 2);
+            var barra1 = data.substr(2, 1);
+            var mes = data.substr(3, 2);
+            var barra2 = data.substr(5, 1);
+            var ano = data.substr(6, 4);
+            if (data.length != 10 || barra1 != "/" || barra2 != "/" || isNaN(dia) || isNaN(mes) || isNaN(ano) || dia > 31 || mes > 12) return false;
+            if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia == 31) return false;
+            if (mes == 2 && (dia > 29 || (dia == 29 && ano % 4 != 0))) return false;
+            if (ano < 1900) return false;
+            if (ano > 2018) return false;
+            return true;
+        }, "Informe uma data válida");  // Mensagem        
+
+        var id = 0, idParaExcluir, trId, nome, data, email;
+        
+        function btnEditar() {
+            trId = this.parentNode.parentNode;        
+            nome = trId.childNodes[1];
+            console.log(nome);
+            data = trId.childNodes[2];
+            email = trId.childNodes[3];
+            $("#editarNome").val(nome.textContent);
+            $("#editarDataNasc").val(data.textContent);
+            $("#editarEmail").val(email.textContent);
+            $("#modalEditar").modal('show'); 
+        }
+
+        function btnExcluir() {
+            trId = this.parentNode.parentNode;
+            $("#modalExcluir").modal('show'); 
+        }
+
+        function incluirRegistro(){        
+
+            
+            var tr = document.createElement("tr");
+            var tdId = document.createElement("td");
+            var tdNome = document.createElement("td");
+            var tdData = document.createElement("td");
+            var tdEmail = document.createElement("td");
+            var tdEditar = document.createElement("td");
+            var tdExcluir = document.createElement("td");
+
+            /* Botão Editar */
+            var buttonEditar = document.createElement("button");       
+            buttonEditar.setAttribute("type", "button");
+            buttonEditar.className = "btn btn-success";
+            buttonEditar.onclick = btnEditar;        
+            buttonEditar.textContent = "Editar";
+
+            /* Botão Excluir */
+            var buttonExcluir = document.createElement("button");       
+            buttonExcluir.setAttribute("type", "button");        
+            buttonExcluir.className = "btn btn-danger";        
+            buttonExcluir.onclick = btnExcluir;        
+            buttonExcluir.textContent = "Excluir";
+
+            tr.setAttribute("id", ++id);
+
+            tdId.textContent = id;
+            tdNome.textContent = $("#incluirNome").val();
+            tdData.textContent = $("#incluirDataNasc").val();   
+            tdEmail.textContent = $("#incluirEmail").val(); 
+            tdEditar.appendChild(buttonEditar);
+            tdExcluir.appendChild(buttonExcluir);
+            tr.appendChild(tdId);
+            tr.appendChild(tdNome);
+            tr.appendChild(tdData);
+            tr.appendChild(tdEmail);
+            tr.appendChild(tdEditar);
+            tr.appendChild(tdExcluir);
+            $("#registro")[0].appendChild(tr);
+            $("#modalIncluir").modal('hide');     
+
+        };
+
+        function editarRegistro(){
+            nome.textContent = $("#editarNome").val();
+            data.textContent = $("#editarDataNasc").val();
+            email.textContent = $("#editarEmail").val();
+            $("#modalEditar").modal('hide');
+        };
+
+        $("#excluir").click(function (){ 
+            $("#registro")[0].removeChild(trId);
+            $("#modalExcluir").modal('hide');  
+        });
+        
+        $('#formIncluir').validate({             
+            rules: {
+                nome: {
+                    required: true,
+                    minlength: 5
+                },
+                dataIncluir: {
+                    required: true,
+                    dateBR: true                    
+                },
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            submitHandler: function(form) {                   
+                incluirRegistro();               
+                return false;
+            }
+        });  
+
+         $('#formEditar').validate({             
+            rules: {
+                nome: {
+                    required: true,
+                    minlength: 5
+                },
+                dataEditar: {
+                    required: true,
+                    dateBR: true                    
+                },
+                email: {
+                    required: true,
+                    email: true
+                }
+            },
+            submitHandler: function(form) {                   
+                editarRegistro();               
+                return false;
+            }
+        });  
+
+
+    });
+    </script>
+</body>
+</html>
